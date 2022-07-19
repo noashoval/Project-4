@@ -13,17 +13,17 @@ public class Appointment {
     //PRIVATE FIELDS\\
     String title; // title of appointment
     int maxAttend; // Max number of attendees
-    int approvedBooking; // number of approved bookings
+    boolean approvedBooking; // number of approved bookings
     String startTime;
     String endTime;
 
     //CONSTRUCTOR\\
-    public Appointment(String title, int maxAttend, String startTime, String endTime) {
+    public Appointment(String title, String startTime, String endTime) {
         this.title = title;
-        this.maxAttend = maxAttend;
+        this.maxAttend = 1;
         this.startTime = startTime;
         this.endTime = endTime;
-        approvedBooking = 0;
+        approvedBooking = false;
     }
 
     //METHODS\\
@@ -60,11 +60,11 @@ public class Appointment {
         this.endTime = endTime;
     }
 
-    public int getApprovedBooking() {
+    public boolean getApprovedBooking() {
         return approvedBooking;
     }
 
-    public void setApprovedBooking(int approvedBooking) {
+    public void setApprovedBooking(boolean approvedBooking) {
         this.approvedBooking = approvedBooking;
     }
 
