@@ -83,4 +83,20 @@ public class Appointment {
         return time;
     }
 
+    @Override
+    public String toString() {
+        String approved; // number of approved bookings
+        if(approvedBooking) {
+            approved = "Yes";
+        } else {
+            approved = "No";
+        }
+        return String.format("--------------------------\n" +
+                "Appointment Name: %s\n" +
+                "Maximum Attendees: %d\n" +
+                "Booking Approved: %s\n" +
+                "Start Time: %s\n" +
+                "End Time: %s", title, maxAttend, approved, startTime, endTime);
+    }
+
 }

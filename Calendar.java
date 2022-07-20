@@ -19,6 +19,7 @@ public class Calendar {
     String calendarName;
     String description;
     ArrayList<Appointment> appointments = new ArrayList<>();
+
     ArrayList<Appointment> apptRequests = new ArrayList<>();
 
     //CONSTRUCTOR\\
@@ -56,6 +57,7 @@ public class Calendar {
         this.appointments = appointments;
     }
 
+
     public void setApptRequests(ArrayList<Appointment> apptRequests) {
         this.apptRequests = apptRequests;
     }
@@ -75,6 +77,24 @@ public class Calendar {
         Appointment apptRequest = new Appointment(title, startTime, endTime);
         apptRequest.setApprovedBooking(false);
         apptRequests.remove(apptRequest);
+    }
+
+    public void makeAptRequest(Appointment appointment) {
+        appointmentRequest.add(appointment);
+    }
+    public void removeAptRequest(Appointment appointment) {
+        appointmentRequest.remove(appointment);
+    }
+
+    public Appointment searchByTitle(String placeholder, ArrayList<Appointment> appointmentList) {
+        ArrayList<Appointment> apt = appointmentList;
+        String search = placeholder;
+        for(int i = 0; i < apt.size(); i++) {
+            if(search.equalsIgnoreCase(apt.get(i).getTitle())) {
+                return apt.get(i);
+            }
+        }
+        return null;
     }
 
 
