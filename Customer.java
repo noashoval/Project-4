@@ -3,13 +3,12 @@ import java.util.ArrayList;
 public class Customer extends User {
     private ArrayList<Appointment> approvedApt = new ArrayList<>(); // Array list of approved appointments
 
-
-    public Customer(String userName, String email, String password) {
-        super(userName, email, password);
+    public Customer(String userName, String password, String firstName, String lastName, String email) {
+        super(userName, password, firstName, lastName, email);
     }
 
     public void viewCalendars(Calendar calendar) {
-        ArrayList<Appointment> appointments = new ArrayList<>();
+        ArrayList<Appointment> appointments;
         System.out.println(calendar.getCalendarName());
         System.out.println(calendar.getDescription());
         appointments = calendar.getAppointments();
@@ -50,7 +49,6 @@ public class Customer extends User {
             throw new AppointmentNotFoundException("Appointment not found");
         } else {
             approvedApt.remove(apt);
-            calendar.appointmentApproved.remove(apt);
             for (int i = 0; i < calendar.appointments.size(); i++) {
                 if(calendar.appointments.get(i).getTitle().equalsIgnoreCase(apt.title)) {
                     calendar.appointments.get(i).setApprovedBooking(false);
