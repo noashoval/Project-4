@@ -16,6 +16,7 @@
 //calendars have appointments
 
 import java.util.ArrayList;
+import java.util.Calendar;
 
 public class Seller extends User {
     //private fields
@@ -23,8 +24,8 @@ public class Seller extends User {
     private boolean acceptRequest;
 
     //constructor
-    public Seller (String userName, String email, String password, ArrayList<Store> stores) {
-        super(userName, email, password);
+    public Seller (String userName, String password, String firstName, String lastName, String email, ArrayList<Store> stores) {
+        super(userName, password, firstName, lastName, email);
         this.stores = stores;
     }
     //getStores method
@@ -38,7 +39,7 @@ public class Seller extends User {
     //edit store method
     public void modifyStore(Store store, String newName, ArrayList<Calendar> newCalendar) {
         store.setStoreName(newName);
-        store.setCalendarList(newCalendar);
+       // store.setCalendarList(newCalendar);
         //new store object??
 
     }
@@ -49,24 +50,34 @@ public class Seller extends User {
     }
 
     //add calendar
-    public void addCalendar(Calendar calendar) {
-        addCalendar(calendar);
+    public void addCalendar(Store store, String newCalendarName, String newDescription) {
+        store.addCalendar(newCalendarName, newDescription);
     }
 
     //edit calendar
-    public void modifyCalendar(Calendar calendar, String newCalName, String newCalDescription) {
-        calendar.setCalendarName(newCalName);
-        calendar.setDescription(newCalDescription);
+    public void modifyCalendar(Store store, Calendar calendar, String newCalName, String newCalDescription) {
+        store.getCalendarList();
+        if (store.getCalendarList().contains(calendar)) {
+            store.getCalendarList().remove(calendar);
+            store.addCalendar(newCalName, newCalDescription);
+        } else {
+            System.out.println("calendar you are trying to modify does not exist");
+        }
     }
 
     //delete calendar
-    public void removeCalendar(Calendar calendar) {
-
+    public void removeCalendar(Store store, Calendar calendar) {
+        if (store.getCalendarList().contains(calendar)) {
+            store.getCalendarList().remove(calendar);
+        }
     }
 
     //accept/ decline requests
-    public void viewApptRequests(Appointment appointment) {
+    public void viewApptRequests(Store store, Calendar sellerCalendar, String newCalName, String newCalDescription) {
 
+        }
+
+    public void approveApptRequest(Calendar calendar, String newCalName, String newCalDescription) {
 
     }
 

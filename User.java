@@ -1,12 +1,35 @@
-public class User {
+import java.util.ArrayList;
+import java.io.Serializable;
+public class User implements Serializable {
     private String userName;
-    private String email;
     private String password;
 
-    public User(String userName, String email, String password) {
+    private String firstName;
+    private String lastName;
+    private String email;
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public User(String userName, String password, String firstName, String lastName, String email) {
         this.userName = userName;
         this.email = email;
         this.password = password;
+        this.firstName = firstName;
+        this.lastName = lastName;
     }
 
     public String getUserName() {
@@ -32,11 +55,12 @@ public class User {
     public void setPassword(String password) {
         this.password = password;
     }
-    public void editAccount() {
+    public void editAccount(String userName, String password, String firstName, String lastName, String email) {
         //to do
     }
-    public void deleteACcount() {
-        //to do
+    public void deleteAccount() {
+
+        getUserName().replace(userName, null);
     }
 
 }

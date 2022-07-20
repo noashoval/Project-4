@@ -1,3 +1,6 @@
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+
 /**
  * Program name: Appointment
  *
@@ -16,6 +19,8 @@ public class Appointment {
     boolean approvedBooking; // number of approved bookings
     String startTime;
     String endTime;
+
+    private String time;
 
     //CONSTRUCTOR\\
     public Appointment(String title, String startTime, String endTime) {
@@ -67,8 +72,7 @@ public class Appointment {
     public void setApprovedBooking(boolean approvedBooking) {
         this.approvedBooking = approvedBooking;
     }
-    
-    
+
     //this is for time stamping the appointments im not really sure how to implement it...
     public void setTime() {
         LocalDateTime currentTime = LocalDateTime.now();
@@ -78,6 +82,7 @@ public class Appointment {
     public String getTime() {
         return time;
     }
+
     @Override
     public String toString() {
         String approved; // number of approved bookings
@@ -93,4 +98,5 @@ public class Appointment {
                 "Start Time: %s\n" +
                 "End Time: %s", title, maxAttend, approved, startTime, endTime);
     }
+
 }
