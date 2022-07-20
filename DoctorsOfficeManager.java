@@ -12,12 +12,46 @@ public class DoctorsOfficeManager {
         boolean existUser;
         String usernameInput;
         String passwordInput;
+        String firstName;
+        String lastname;
+        String email;
         ArrayList<User> usersList = readUserFile("userFile.txt");
         User loggedUser = new User("username", "password", "first", "last", "email");
         do {
             switch (loginAnswer) {
                 case 1:
+                    System.out.println("Enter your username");
+                    usernameInput = scan.nextLine();
+                    if (usernameInput.trim().contains(" ")) {
+                        System.out.println("Enter a username with no spaces");
+                    } else if (!usernameInput.trim().contains(" ")) {
+                        if (usersList.size() > 0) {
+                            for (int i = 0; 1 < usersList.size(); i++) {
+                                if (usersList.get(i).getUserName().equalsIgnoreCase(usernameInput.trim())) {
+                                    System.out.println("This is now your username");
+                                    existUser = false;
+                                    break;
+                                } else {
+                                    existUser = true;
+                                }
+                            }
+                        } else {
+                            existUser = true;
+                        }
+                    }
+                    if (existUser) {
+                        do {
+                            System.out.println("Enter a password");
+                            passwordInput = scan.nextLine();
 
+                            System.out.println("Please enter your first name.");
+                            firstName = scan.nextLine().trim();
+                            firstName = firstName.substring(0,1).toUpperCase() + firstName.substring(1);
+
+                            System.out.println("Please enter your last name.");
+                            User user = new User(usernameInput, passwordInput, firstName, lastname, email);
+                        }
+                    }
                     //user login logic here
                     //sout("create username");
                     //if username exists sout("error this username is already taken! choose another one)
@@ -25,8 +59,10 @@ public class DoctorsOfficeManager {
                     //don't need to check if password exists
                     //enter user type (either doctor or patient)
                     //user created!
+
                     break;
                 case 2:
+                    //logging in
                     System.out.println("Enter your username");
                     usernameInput = scan.nextLine();
                     for (int i = 0; i < usersList.size(); i++) {
