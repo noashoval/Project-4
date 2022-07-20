@@ -13,6 +13,7 @@ public class DoctorsOfficeManager {
         String usernameInput;
         String passwordInput;
         ArrayList<User> usersList = readUserFile("userFile.txt");
+        User loggedUser = new User("username", "password", "first", "last", "email");
         do {
             switch (loginAnswer) {
                 case 1:
@@ -28,10 +29,25 @@ public class DoctorsOfficeManager {
                 case 2:
                     System.out.println("Enter your username");
                     usernameInput = scan.nextLine();
+                    for (int i = 0; i < usersList.size(); i++) {
+                        if (usersList.get(i).getUserName().equalsIgnoreCase(usernameInput.trim())) {
+                            System.out.println("Enter your password");
+                            passwordInput = scan.nextLine();
+
+                            if (usersList.get(i).getPassword().equals(passwordInput.trim())) {
+                                System.out.println("You have been successfully logged in!");
+                                loggedUser = usersList.get(i);
+                                break;
+                            } else {
+                                System.out.println("That is an incorrect password");
+                                logLoop = true;
+                                break;
+                            }
+                        }
+                    }
 
 
-                    System.out.println("Enter your password");
-                    passwordInput = scan.nextLine();
+
                     //user login logic here
                     // sout("enter username");
                     //sout("enter password");
