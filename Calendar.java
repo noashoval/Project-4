@@ -1,4 +1,8 @@
 import java.util.ArrayList;
+////create an arraylist viewApptRequests
+//first there is a request arraylist
+//you view the array list then you can call approve/deny methods
+//then once you remove or deny the appt request you can call create appt and add it to appt rrraylist
 
 /**
  * Program name: Calendar
@@ -15,6 +19,7 @@ public class Calendar {
     String calendarName;
     String description;
     ArrayList<Appointment> appointments = new ArrayList<>();
+    ArrayList<Appointment> apptRequests = new ArrayList<>();
 
     //CONSTRUCTOR\\
     public Calendar(String calendarName, String description) {
@@ -35,6 +40,9 @@ public class Calendar {
     public ArrayList<Appointment> getAppointments() {
         return appointments;
     }
+    public ArrayList<Appointment> viewApptRequests() {
+        return apptRequests;
+    }
 
     public void setCalendarName(String calendarName) {
         this.calendarName = calendarName;
@@ -48,9 +56,25 @@ public class Calendar {
         this.appointments = appointments;
     }
 
-    public void createAppointment(String title, int maxAttend, String startTime, String endTime) {
-        Appointment newAppointment = new Appointment(title, maxAttend, startTime, endTime);
+    public void setApptRequests(ArrayList<Appointment> apptRequests) {
+        this.apptRequests = apptRequests;
+    }
+
+    public void createAppointment(String title, String startTime, String endTime) {
+        Appointment newAppointment = new Appointment(title, startTime, endTime);
         appointments.add(newAppointment);
+    }
+    public void approveRequest(String title1, String startTime1, String endTime1) {
+            Appointment apptRequest = new Appointment(title1, startTime1, endTime1);
+            apptRequest.setApprovedBooking(true);
+            apptRequests.remove(apptRequest);
+            createAppointment(title1, startTime1, endTime1);
+    }
+    //if denied, just remove from apptRequests array list, don't add appt to appts Arraylist
+    public void denyRequest(String title, String startTime, String endTime) {
+        Appointment apptRequest = new Appointment(title, startTime, endTime);
+        apptRequest.setApprovedBooking(false);
+        apptRequests.remove(apptRequest);
     }
 
 
