@@ -73,13 +73,35 @@ public class Seller extends User {
     }
 
     //accept/ decline requests
-    public void viewApptRequests(Store store, Calendar sellerCalendar, String newCalName, String newCalDescription) {
-
+    public void viewApptRequests(Store store) {
+        for (int i = 0; i < store.getCalendarList().size(); i++) {
+           for(int j = 0; j < store.getCalendarList().get(i).apptRequests.size(); j ++) {
+               System.out.println(store.getCalendarList().get(i).apptRequests.get(j));
+           }
+        }
         }
 
-    public void approveApptRequest(Calendar calendar, String newCalName, String newCalDescription) {
 
+    public void approveApptRequest(Appointment appointment, int storeIndex, int calendarIndex) {
+        stores.get(storeIndex).getCalendarList().get(calendarIndex).removeAptRequest(appointment);
+        int size = stores.get(storeIndex).getCalendarList().get(calendarIndex).appointments.size();
+        for(int i = 0; i < size; i++) {
+            if(appointment.getTitle().equalsIgnoreCase(stores.get(storeIndex).getCalendarList().get(calendarIndex).appointments.get(i).title)){
+                stores.get(storeIndex).getCalendarList().get(calendarIndex).appointments.get(i).setApprovedBooking(true);
+            }
+        }
     }
+
+    public void denyApptRequest(Appointment appointment, int storeIndex, int calendarIndex) {
+        stores.get(storeIndex).getCalendarList().get(calendarIndex).removeAptRequest(appointment);
+        int size = stores.get(storeIndex).getCalendarList().get(calendarIndex).appointments.size();
+        for(int i = 0; i < size; i++) {
+            if(appointment.getTitle().equalsIgnoreCase(stores.get(storeIndex).getCalendarList().get(calendarIndex).appointments.get(i).title)){
+                stores.get(storeIndex).getCalendarList().get(calendarIndex).appointments.get(i).setApprovedBooking(false);
+            }
+        }
+    }
+
 
 
 }

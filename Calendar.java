@@ -80,10 +80,10 @@ public class Calendar {
     }
 
     public void makeAptRequest(Appointment appointment) {
-        appointmentRequest.add(appointment);
+        apptRequests.add(appointment);
     }
     public void removeAptRequest(Appointment appointment) {
-        appointmentRequest.remove(appointment);
+        apptRequests.remove(appointment);
     }
 
     public Appointment searchByTitle(String placeholder, ArrayList<Appointment> appointmentList) {
