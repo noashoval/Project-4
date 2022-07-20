@@ -1,3 +1,6 @@
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+
 /**
  * Program name: Appointment
  *
@@ -16,6 +19,8 @@ public class Appointment {
     boolean approvedBooking; // number of approved bookings
     String startTime;
     String endTime;
+
+    private String time;
 
     //CONSTRUCTOR\\
     public Appointment(String title, String startTime, String endTime) {
@@ -66,6 +71,15 @@ public class Appointment {
 
     public void setApprovedBooking(boolean approvedBooking) {
         this.approvedBooking = approvedBooking;
+    }
+
+    public void setTime() {
+        LocalDateTime currentTime = LocalDateTime.now();
+        DateTimeFormatter formattedTime = DateTimeFormatter.ofPattern("MM-dd-yyyy HH:mm");
+        this.time = currentTime.format(formattedTime);
+    }
+    public String getTime() {
+        return time;
     }
 
 }
