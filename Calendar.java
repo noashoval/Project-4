@@ -15,6 +15,8 @@ public class Calendar {
     String calendarName;
     String description;
     ArrayList<Appointment> appointments = new ArrayList<>();
+    ArrayList<Appointment> appointmentRequest = new ArrayList<>();
+    ArrayList<Appointment> appointmentApproved = new ArrayList<>();
 
     //CONSTRUCTOR\\
     public Calendar(String calendarName, String description) {
@@ -48,9 +50,27 @@ public class Calendar {
         this.appointments = appointments;
     }
 
-    public void createAppointment(String title, int maxAttend, String startTime, String endTime) {
-        Appointment newAppointment = new Appointment(title, maxAttend, startTime, endTime);
+    public void createAppointment(String title, String startTime, String endTime) {
+        Appointment newAppointment = new Appointment(title, startTime, endTime);
         appointments.add(newAppointment);
+    }
+
+    public void makeAptRequest(Appointment appointment) {
+        appointmentRequest.add(appointment);
+    }
+    public void removeAptRequest(Appointment appointment) {
+        appointmentRequest.remove(appointment);
+    }
+
+    public Appointment searchByTitle(String placeholder, ArrayList<Appointment> appointmentList) {
+        ArrayList<Appointment> apt = appointmentList;
+        String search = placeholder;
+        for(int i = 0; i < apt.size(); i++) {
+            if(search.equalsIgnoreCase(apt.get(i).getTitle())) {
+                return apt.get(i);
+            }
+        }
+        return null;
     }
 
 
