@@ -67,7 +67,17 @@ public class Appointment {
     public void setApprovedBooking(boolean approvedBooking) {
         this.approvedBooking = approvedBooking;
     }
-
+    
+    
+    //this is for time stamping the appointments im not really sure how to implement it...
+    public void setTime() {
+        LocalDateTime currentTime = LocalDateTime.now();
+        DateTimeFormatter formattedTime = DateTimeFormatter.ofPattern("MM-dd-yyyy HH:mm");
+        this.time = currentTime.format(formattedTime);
+    }
+    public String getTime() {
+        return time;
+    }
     @Override
     public String toString() {
         String approved; // number of approved bookings
