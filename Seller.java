@@ -24,8 +24,8 @@ public class Seller extends User {
     private boolean acceptRequest;
 
     //constructor
-    public Seller (String userName, String email, String password, ArrayList<Store> stores) {
-        super(userName, email, password);
+    public Seller (String userName, String password, String firstName, String lastName, String email, ArrayList<Store> stores) {
+        super(userName, password, firstName, lastName, email);
         this.stores = stores;
     }
     //getStores method
@@ -56,13 +56,13 @@ public class Seller extends User {
 
     //edit calendar
     public void modifyCalendar(Store store, Calendar calendar, String newCalName, String newCalDescription) {
-       store.getCalendarList();
-       if (store.getCalendarList().contains(calendar)) {
-           store.getCalendarList().remove(calendar);
-           store.addCalendar(newCalName, newCalDescription);
-       } else {
-           System.out.println("calendar you are trying to modify does not exist");
-       }
+        store.getCalendarList();
+        if (store.getCalendarList().contains(calendar)) {
+            store.getCalendarList().remove(calendar);
+            store.addCalendar(newCalName, newCalDescription);
+        } else {
+            System.out.println("calendar you are trying to modify does not exist");
+        }
     }
 
     //delete calendar

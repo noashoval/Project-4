@@ -55,11 +55,11 @@ public class User implements Serializable {
     public void setPassword(String password) {
         this.password = password;
     }
-    public void editAccount() {
+    public void editAccount(String userName, String password, String firstName, String lastName, String email) {
         //to do
     }
     public void deleteAccount() {
-        //to do
+
         getUserName().replace(userName, null);
     }
 
