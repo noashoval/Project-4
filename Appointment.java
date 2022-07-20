@@ -73,6 +73,7 @@ public class Appointment {
         this.approvedBooking = approvedBooking;
     }
 
+    //this is for time stamping the appointments im not really sure how to implement it...
     public void setTime() {
         LocalDateTime currentTime = LocalDateTime.now();
         DateTimeFormatter formattedTime = DateTimeFormatter.ofPattern("MM-dd-yyyy HH:mm");

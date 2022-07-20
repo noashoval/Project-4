@@ -9,7 +9,7 @@ import java.util.ArrayList;
  * @version July 17, 2022
  *
  */
-
+//should this also extend user?
 public class Store {
     String storeName;
     ArrayList<Calendar> calendarList = new ArrayList<>();

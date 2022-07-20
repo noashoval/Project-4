@@ -23,8 +23,8 @@ public class Seller extends User {
     private boolean acceptRequest;
 
     //constructor
-    public Seller (String userName, String email, String password, ArrayList<Store> stores) {
-        super(userName, email, password);
+    public Seller (String userName, String password, String firstName, String lastName, String email, ArrayList<Store> stores) {
+        super(userName, password, firstName, lastName, email);
         this.stores = stores;
     }
     //getStores method
