@@ -18,7 +18,7 @@ public class DoctorsOfficeManager {
         int loginAnswer;
         //while loop 1
         do {
-            System.out.println("1. log in as a new user\n2. log in as an existing user");
+            System.out.println("1. log in as a new user\n2. log in as an existing user\n3.End Application(For testing)");
             loginAnswer = scan.nextInt();
             scan.nextLine();
             switch (loginAnswer) {
@@ -324,6 +324,9 @@ public class DoctorsOfficeManager {
                             default -> System.out.println("Invalid User type please.");
                         }
                     } while (invalid3);
+                }
+                case 3 -> {
+                    valid = true;
                 }
                 default -> {
                     System.out.println("Invalid option, please choose an option:");
