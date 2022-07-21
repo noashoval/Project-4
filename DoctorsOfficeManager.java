@@ -9,7 +9,7 @@ public class DoctorsOfficeManager {
         System.out.println("1. log in as a new user\n2. log in as an existing user");
         int loginAnswer = scan.nextInt();
         boolean logLoop;
-        boolean existUser;
+        boolean existUser = false;
         String usernameInput;
         String passwordInput;
         String firstName;
@@ -40,17 +40,47 @@ public class DoctorsOfficeManager {
                         }
                     }
                     if (existUser) {
+                        boolean passwordCreated;
                         do {
+                            passwordCreated = false;
                             System.out.println("Enter a password");
                             passwordInput = scan.nextLine();
 
                             System.out.println("Please enter your first name.");
                             firstName = scan.nextLine().trim();
-                            firstName = firstName.substring(0,1).toUpperCase() + firstName.substring(1);
+                            firstName = firstName.substring(0, 1).toUpperCase() + firstName.substring(1);
 
                             System.out.println("Please enter your last name.");
+                            lastname = scan.nextLine().trim();
+                            lastname = lastname.substring(0, 1).toUpperCase() + lastname.substring(1);
+
+                            System.out.println("Please enter your email");
+                            email = scan.nextLine().trim();
+
+
                             User user = new User(usernameInput, passwordInput, firstName, lastname, email);
-                        }
+                            boolean loop;
+                            do {
+                                loop = false;
+                                System.out.println("What type of account do you want?");
+                                System.out.println("Are you a seller or customer?");
+                                System.out.println("1.Seller" + '\n' + "2.Customer");
+                                String accountType = scan.nextLine();
+
+                                if (accountType.equals("1")) {
+                                    loggedUser = new Seller(usernameInput, passwordInput, firstName, lastname, email);
+                                    usersList.add(loggedUser);
+                                } else if (accountType.equals("2")) {
+                                    loggedUser = new Customer(usernameInput, passwordInput, firstName, lastname, email);
+                                    usersList.add(loggedUser);
+                                } else {
+                                    System.out.println("That is an invalid option");
+                                    loop = true;
+                                }
+
+
+                            } while (loop);
+                        } while (passwordCreated);
                     }
                     //user login logic here
                     //sout("create username");
