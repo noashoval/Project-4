@@ -41,9 +41,6 @@ public class Calendar {
     public ArrayList<Appointment> getAppointments() {
         return appointments;
     }
-    public ArrayList<Appointment> viewApptRequests() {
-        return apptRequests;
-    }
 
     public void setCalendarName(String calendarName) {
         this.calendarName = calendarName;
@@ -66,6 +63,11 @@ public class Calendar {
         Appointment newAppointment = new Appointment(title, startTime, endTime);
         appointments.add(newAppointment);
     }
+
+    public void removeAppointment(Appointment appointment) {
+        appointments.remove(appointment);
+    }
+
     public void approveRequest(String title1, String startTime1, String endTime1) {
             Appointment apptRequest = new Appointment(title1, startTime1, endTime1);
             apptRequest.setApprovedBooking(true);
@@ -98,6 +100,13 @@ public class Calendar {
     }
 
 
+    public void viewCalendar() {
+        System.out.println(calendarName);
+        System.out.println(description);
+        for(int i = 0; i < appointments.size(); i++) {
+            System.out.println(appointments.get(i));
+        }
+    }
 
 
 
