@@ -24,7 +24,7 @@ public class Seller extends User {
     private boolean acceptRequest;
 
     //constructor
-    public Seller (String userName, String password, String firstName, String lastName, String email, ArrayList<Store> stores) {
+    public Seller (String userName, String password, String firstName, String lastName, String email) {
         super(userName, password, firstName, lastName, email);
         this.stores = stores;
     }
