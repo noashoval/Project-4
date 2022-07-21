@@ -59,8 +59,7 @@ public class User implements Serializable {
         //to do
     }
     public void deleteAccount() {
-        //to do
-        getUserName().replace(userName, null);
+
     }
 
 }

@@ -58,7 +58,7 @@ public class DoctorsOfficeManager {
                             email = scan.nextLine().trim();
 
 
-                            User user = new User(usernameInput, passwordInput, firstName, lastname, email);
+                            //User user = new User(usernameInput, passwordInput, firstName, lastname, email);
                             boolean loop;
                             do {
                                 loop = false;
@@ -130,6 +130,7 @@ public class DoctorsOfficeManager {
             }
         } while (loginAnswer > 0 && loginAnswer <= 2);
     }
+    //also we probably wont need this since we arent reading from a file anymore
     public static ArrayList<User> readUserFile(String filename) {
         ArrayList<User> userArrayList = new ArrayList<>();
 
@@ -149,4 +150,5 @@ public class DoctorsOfficeManager {
         }
         return userArrayList;
     }
+
 }
