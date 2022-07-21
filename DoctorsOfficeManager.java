@@ -5,7 +5,11 @@ import java.util.Scanner;
 public class DoctorsOfficeManager {
     public static void main(String[] args) {
         Scanner scan = new Scanner(System.in);
+        System.out.println("Welcome, please choose an option:");
+        System.out.println("1. log in as a new user\n2. log in as an existing user");
+        int loginAnswer = scan.nextInt();
         boolean logLoop;
+
         boolean existUser;
         String usernameInput = null;
         int userType;
@@ -18,9 +22,6 @@ public class DoctorsOfficeManager {
         int loginAnswer;
         //while loop 1
         do {
-            System.out.println("1. log in as a new user\n2. log in as an existing user");
-            loginAnswer = scan.nextInt();
-            scan.nextLine();
             switch (loginAnswer) {
                 case 1 -> {
                     System.out.println("Please Enter Your First Name");
@@ -321,8 +322,8 @@ public class DoctorsOfficeManager {
                                 }
                                 invalid3 = false;
                             }
-                            default -> System.out.println("Invalid User type please.");
                         }
+
                     } while (invalid3);
                 }
                 default -> {
@@ -330,9 +331,9 @@ public class DoctorsOfficeManager {
                     valid = false;
                 }
 
-            }
-        } while (!valid);
 
+            }
+        } while (loginAnswer > 0 && loginAnswer <= 2);
     }
 }
 /*public static ArrayList<User> readUserFile(String filename) {
@@ -353,4 +354,10 @@ public class DoctorsOfficeManager {
             throw new RuntimeException(e);
         }
         return userArrayList;
+
     }*/
+
+    }
+
+}
+
