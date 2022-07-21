@@ -20,6 +20,8 @@ public class Appointment {
     String startTime;
     String endTime;
 
+    String name;
+
     private String time;
 
     //CONSTRUCTOR\\
@@ -29,6 +31,7 @@ public class Appointment {
         this.startTime = startTime;
         this.endTime = endTime;
         approvedBooking = false;
+        name = "";
     }
 
     //METHODS\\
@@ -99,4 +102,11 @@ public class Appointment {
                 "End Time: %s", title, maxAttend, approved, startTime, endTime);
     }
 
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getName() {
+        return name;
+    }
 }

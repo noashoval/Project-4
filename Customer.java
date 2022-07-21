@@ -8,7 +8,7 @@ public class Customer extends User {
     }
 
     public void viewCalendars(Calendar calendar) {
-        ArrayList<Appointment> appointments;
+        ArrayList<Appointment> appointments = new ArrayList<>();
         System.out.println(calendar.getCalendarName());
         System.out.println(calendar.getDescription());
         appointments = calendar.getAppointments();
@@ -17,8 +17,9 @@ public class Customer extends User {
         }
     }
 
-    public void makeAptRequest(String title, Calendar calendar) throws AppointmentNotFoundException {
+    public void makeAptRequest(String title, Calendar calendar, String name) throws AppointmentNotFoundException {
         Appointment appointmentRequest =  calendar.searchByTitle(title, calendar.getAppointments());
+        appointmentRequest.setName(name);
         if (appointmentRequest == null) {
             throw new AppointmentNotFoundException("Appointment not found");
         } else {

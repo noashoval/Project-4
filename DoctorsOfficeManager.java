@@ -183,17 +183,22 @@ public class DoctorsOfficeManager {
                                                                                             case 5 -> {
                                                                                                 String a;
                                                                                                 boolean approvalRequests = false;
-                                                                                                for(int q = 0; q < sellersList.get(i).getStores().size(); q++) {
+                                                                                                for (int q = 0; q < sellersList.get(i).getStores().size(); q++) {
 
-                                                                                                    for(int w = 0; w < sellersList.get(i).getStores().get(q).calendarList.size(); w++) {
+                                                                                                    for (int w = 0; w < sellersList.get(i).getStores().get(q).calendarList.size(); w++) {
 
-                                                                                                        for(int e = 0; e < sellersList.get(i).getStores().get(q).calendarList.get(w).apptRequests.size(); e++) {
+                                                                                                        for (int e = 0; e < sellersList.get(i).getStores().get(q).calendarList.get(w).apptRequests.size(); e++) {
                                                                                                             approvalRequests = true;
                                                                                                             System.out.println(sellersList.get(i).getStores().get(q).calendarList.get(w).apptRequests.get(e));
                                                                                                             System.out.println("Approve request?(Enter Yes/No)");
                                                                                                             a = scan.nextLine();
-                                                                                                            if(a.equalsIgnoreCase("yes")) {
+                                                                                                            if (a.equalsIgnoreCase("yes")) {
                                                                                                                 sellersList.get(i).approveApptRequest(sellersList.get(i).getStores().get(q).calendarList.get(w).apptRequests.get(e), q, w);
+                                                                                                                for (int h = 0; h < customersList.size(); h++) {
+                                                                                                                    if (customersList.get(h).getFirstName().equalsIgnoreCase(sellersList.get(i).getStores().get(q).calendarList.get(w).apptRequests.get(e).name)) {
+                                                                                                                        customersList.get(h).getApprovedApt().add(sellersList.get(i).getStores().get(q).calendarList.get(w).apptRequests.get(e));
+                                                                                                                    }
+                                                                                                                }
                                                                                                             } else if (a.equalsIgnoreCase("no")) {
                                                                                                                 sellersList.get(i).denyApptRequest(sellersList.get(i).getStores().get(q).calendarList.get(w).apptRequests.get(e), q, w);
                                                                                                             } else {
