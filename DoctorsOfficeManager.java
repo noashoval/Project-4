@@ -6,6 +6,7 @@ public class DoctorsOfficeManager {
     public static void main(String[] args) {
         Scanner scan = new Scanner(System.in);
         boolean logLoop;
+
         boolean existUser;
         String usernameInput = null;
         int userType;
@@ -16,12 +17,13 @@ public class DoctorsOfficeManager {
         boolean valid = false;
 
         System.out.println("Welcome, please choose an option:");
-        int loginAnswer;
+        int loginAnswer
         do {
             System.out.println("1. log in as a new user\n2. log in as an existing user");
             loginAnswer = scan.nextInt();
             scan.nextLine();
             switch (loginAnswer) {
+
                 case 1 -> {
                     System.out.println("Please Enter Your First Name");
                     String firstName = scan.nextLine();
@@ -48,6 +50,7 @@ public class DoctorsOfficeManager {
                                 Customer customer = new Customer(userName, password, firstName, lastName, email);
                                 customersList.add(customer);
                                 invalid = false;
+
                             }
                             default -> System.out.println("Invalid User type please.");
                         }
@@ -189,6 +192,7 @@ public class DoctorsOfficeManager {
         } while (!valid);
 
     }
+    //also we probably wont need this since we arent reading from a file anymore
     public static ArrayList<User> readUserFile(String filename) {
         ArrayList<User> userArrayList = new ArrayList<>();
 
@@ -208,6 +212,7 @@ public class DoctorsOfficeManager {
         }
         return userArrayList;
     }
+
 }
 
 /*do {
