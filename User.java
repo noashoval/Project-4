@@ -56,11 +56,10 @@ public class User implements Serializable {
         this.password = password;
     }
     public void editAccount(String userName, String password, String firstName, String lastName, String email) {
-        //to do
+
     }
     public void deleteAccount() {
 
-        getUserName().replace(userName, null);
     }
 
 }
