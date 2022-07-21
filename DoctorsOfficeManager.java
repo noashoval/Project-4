@@ -24,6 +24,8 @@ public class DoctorsOfficeManager {
                     usernameInput = scan.nextLine();
                     if (usernameInput.trim().contains(" ")) {
                         System.out.println("Enter a username with no spaces");
+                        System.out.println("Enter your username");
+                        usernameInput = scan.nextLine();
                     } else if (!usernameInput.trim().contains(" ")) {
                         if (usersList.size() > 0) {
                             for (int i = 0; 1 < usersList.size(); i++) {
