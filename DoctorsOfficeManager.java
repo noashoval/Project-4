@@ -5,11 +5,7 @@ import java.util.Scanner;
 public class DoctorsOfficeManager {
     public static void main(String[] args) {
         Scanner scan = new Scanner(System.in);
-        System.out.println("Welcome, please choose an option:");
-        System.out.println("1. log in as a new user\n2. log in as an existing user");
-        int loginAnswer = scan.nextInt();
         boolean logLoop;
-
         boolean existUser;
         String usernameInput = null;
         int userType;
@@ -22,6 +18,9 @@ public class DoctorsOfficeManager {
         int loginAnswer;
         //while loop 1
         do {
+            System.out.println("1. log in as a new user\n2. log in as an existing user");
+            loginAnswer = scan.nextInt();
+            scan.nextLine();
             switch (loginAnswer) {
                 case 1 -> {
                     System.out.println("Please Enter Your First Name");
@@ -184,17 +183,22 @@ public class DoctorsOfficeManager {
                                                                                             case 5 -> {
                                                                                                 String a;
                                                                                                 boolean approvalRequests = false;
-                                                                                                for(int q = 0; q < sellersList.get(i).getStores().size(); q++) {
+                                                                                                for (int q = 0; q < sellersList.get(i).getStores().size(); q++) {
 
-                                                                                                    for(int w = 0; w < sellersList.get(i).getStores().get(q).calendarList.size(); w++) {
+                                                                                                    for (int w = 0; w < sellersList.get(i).getStores().get(q).calendarList.size(); w++) {
 
-                                                                                                        for(int e = 0; e < sellersList.get(i).getStores().get(q).calendarList.get(w).apptRequests.size(); e++) {
+                                                                                                        for (int e = 0; e < sellersList.get(i).getStores().get(q).calendarList.get(w).apptRequests.size(); e++) {
                                                                                                             approvalRequests = true;
                                                                                                             System.out.println(sellersList.get(i).getStores().get(q).calendarList.get(w).apptRequests.get(e));
                                                                                                             System.out.println("Approve request?(Enter Yes/No)");
                                                                                                             a = scan.nextLine();
-                                                                                                            if(a.equalsIgnoreCase("yes")) {
+                                                                                                            if (a.equalsIgnoreCase("yes")) {
                                                                                                                 sellersList.get(i).approveApptRequest(sellersList.get(i).getStores().get(q).calendarList.get(w).apptRequests.get(e), q, w);
+                                                                                                                for (int h = 0; h < customersList.size(); h++) {
+                                                                                                                    if (customersList.get(h).getFirstName().equalsIgnoreCase(sellersList.get(i).getStores().get(q).calendarList.get(w).apptRequests.get(e).name)) {
+                                                                                                                        customersList.get(h).getApprovedApt().add(sellersList.get(i).getStores().get(q).calendarList.get(w).apptRequests.get(e));
+                                                                                                                    }
+                                                                                                                }
                                                                                                             } else if (a.equalsIgnoreCase("no")) {
                                                                                                                 sellersList.get(i).denyApptRequest(sellersList.get(i).getStores().get(q).calendarList.get(w).apptRequests.get(e), q, w);
                                                                                                             } else {
@@ -317,8 +321,8 @@ public class DoctorsOfficeManager {
                                 }
                                 invalid3 = false;
                             }
+                            default -> System.out.println("Invalid User type please.");
                         }
-
                     } while (invalid3);
                 }
                 default -> {
@@ -326,9 +330,9 @@ public class DoctorsOfficeManager {
                     valid = false;
                 }
 
-
             }
-        } while (loginAnswer > 0 && loginAnswer <= 2);
+        } while (!valid);
+
     }
 }
 /*public static ArrayList<User> readUserFile(String filename) {
@@ -349,10 +353,4 @@ public class DoctorsOfficeManager {
             throw new RuntimeException(e);
         }
         return userArrayList;
-
     }*/
-
-    }
-
-}
-
