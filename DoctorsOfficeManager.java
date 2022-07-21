@@ -68,7 +68,8 @@ public class DoctorsOfficeManager {
                                 String accountType = scan.nextLine();
 
                                 if (accountType.equals("1")) {
-                                    loggedUser = new Seller(usernameInput, passwordInput, firstName, lastname, email);
+                                    ArrayList<Store> stores = new ArrayList<>();
+                                    loggedUser = new Seller(usernameInput, passwordInput, firstName, lastname, email, stores);
                                     usersList.add(loggedUser);
                                 } else if (accountType.equals("2")) {
                                     loggedUser = new Customer(usernameInput, passwordInput, firstName, lastname, email);
