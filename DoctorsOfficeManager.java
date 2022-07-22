@@ -1,4 +1,3 @@
-
 import java.io.*;
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -177,7 +176,6 @@ public class DoctorsOfficeManager {
                                                                                                 System.out.println("Enter Appointment Name");
                                                                                                 String appointmentName = scan.nextLine();
                                                                                                 sellersList.get(i).getStores().get(j).getCalendarList().get(k).removeAppointment(sellersList.get(i).getStores().get(j).getCalendarList().get(k).searchByTitle(appointmentName, sellersList.get(i).getStores().get(j).getCalendarList().get(k).appointments));
-                                                                                                System.out.println("Appointment Deleted");
                                                                                             }
                                                                                             case 4 -> {
                                                                                                 sellersList.get(i).getStores().get(j).getCalendarList().get(k).viewCalendar();
@@ -257,11 +255,56 @@ public class DoctorsOfficeManager {
                                                         }
                                                     }
                                                     case 3 -> {
+                                                        boolean invalid7 = false;
                                                         do {
-                                                            //TODO edit account
-                                                            System.out.println("1. Change Email\n 2. Change Password");
+                                                            System.out.println("1. Change Email\n2. Change Password\n3. Exit");
                                                             input = scan.nextInt();
                                                             scan.nextLine();
+                                                            switch (input) {
+                                                                case 1 -> {
+                                                                    //change email
+                                                                    //find account and edit the email
+                                                                    boolean foundEmail = false;
+                                                                    System.out.println("What is the email you used for your account?");
+                                                                    String emailInput = scan.nextLine();
+                                                                    for (int p = 0; p < sellersList.size(); p++) {
+                                                                        if (emailInput.equals(sellersList.get(p).getEmail())) {
+                                                                            System.out.println("Enter new email:");
+                                                                            String modifiedEmail = scan.nextLine();
+                                                                            sellersList.get(i).setEmail(modifiedEmail);
+                                                                            System.out.println("Email Modified!");
+                                                                            foundEmail = true;
+                                                                            invalid7 = true;
+                                                                        }
+                                                                    }
+                                                                    if (foundEmail == false) {
+                                                                        System.out.println("Sorry invalid email, please try again");
+                                                                    }
+                                                                }
+                                                                case 2 -> {
+                                                                    //change password
+                                                                    boolean foundPassword = false;
+                                                                    System.out.println("What is the password you used for your account?");
+                                                                    String passInput = scan.nextLine();
+                                                                    for (int q = 0; q < sellersList.size(); q++) {
+                                                                        if (passInput.equals(sellersList.get(q).getPassword())) {
+                                                                            System.out.println("Enter new password:");
+                                                                            String modifiedPass = scan.nextLine();
+                                                                            sellersList.get(i).setPassword(modifiedPass);
+                                                                            System.out.println("Password Modified!");
+                                                                            foundPassword = true;
+                                                                            invalid7 = true;
+                                                                        }
+                                                                    }
+                                                                    if (foundPassword == false) {
+                                                                        System.out.println("Sorry invalid password, please try again");
+                                                                    }
+                                                                }
+                                                                case 3 -> {
+                                                                    invalid7 = true;
+                                                                }
+                                                                default -> System.out.println("Invalid option, please enter a valid option");
+                                                            }
                                                         } while (valid);
                                                     }
                                                     case 4 -> {
@@ -292,6 +335,7 @@ public class DoctorsOfficeManager {
                                 invalid3 = false;
                             }
                             case 2 -> {
+
                                 String userName = "Customer";
                                 System.out.println("Enter your firstName");
                                 String FirstNameInput = scan.nextLine();
@@ -305,8 +349,8 @@ public class DoctorsOfficeManager {
                                             boolean cValid1 = true;
                                             do {
                                                 int input;
-                                                System.out.println("1. List Stores by Seller\n2.View Store\n3. List Approved Appointments\n" +
-                                                        "4. Edit Account 5. Delete Account\n6. Exit");
+                                                System.out.println("1. List Stores by Seller\n2. View Store\n3. List Approved Appointments\n" +
+                                                        "4. Edit Account\n5. Delete Account\n6. Logout");
                                                 input = scan.nextInt();
                                                 scan.nextLine();
                                                 switch (input) {
@@ -329,7 +373,7 @@ public class DoctorsOfficeManager {
                                                         boolean sellerFound = false;
                                                         boolean storeFound = false;
                                                         for (int h = 0; h < sellersList.size(); h++) {
-                                                            if (sellersList.get(h).getFirstName().equals(sellerName)) {
+                                                            if (sellersList.get(h).equals(sellerName)) {
                                                                 sellerFound = true;
                                                                 for (int j = 0; j < sellersList.get(h).getStores().size(); j++) {
                                                                     if (storeName.equalsIgnoreCase(sellersList.get(h).getStores().get(j).storeName)) {
@@ -357,26 +401,31 @@ public class DoctorsOfficeManager {
                                                                                             //while loop 6
                                                                                             boolean invalidS3 = true;
                                                                                             do {
-                                                                                                System.out.println("1. List Appointments\n2. Make Appointment Request\n3. Reschedule Appointment\n4. Cancel Appointment\n5. Exit");
+                                                                                                System.out.println("1. List Appointments\n,2. Make Appointment Request\n3. Reschedule Appointment\n4. Cancel Appointment\n5. Exit");
                                                                                                 input = scan.nextInt();
                                                                                                 switch (input) {
                                                                                                     case 1 -> {
                                                                                                         //list appt
                                                                                                         for (int n = 0; n < sellersList.get(h).getStores().get(j).getCalendarList().get(m).getAppointments().size(); n++) {
-                                                                                                            System.out.println(sellersList.get(h).getStores().get(j).getCalendarList().get(m).getAppointments().get(n));
+                                                                                                            sellersList.get(h).getStores().get(j).getCalendarList().get(m).getAppointments().get(n);
                                                                                                         }
                                                                                                     }
                                                                                                     case 2 -> {
                                                                                                         //make appt request
-                                                                                                        System.out.println("Enter Appointment Title:");
-                                                                                                        String aptTitle = scan.nextLine();
-                                                                                                        customersList.get(i).makeAptRequest(aptTitle, sellersList.get(h).getStores().get(j).getCalendarList().get(m), customersList.get(i).getFirstName());
+                                                                                                        for (int n = 0; n < sellersList.get(h).getStores().get(j).getCalendarList().get(m).getAppointments().size(); n++) {
+                                                                                                            System.out.println("Enter Appointment Title:");
+                                                                                                            String aptTitle = scan.nextLine();
+                                                                                                            customersList.get(i).makeAptRequest(aptTitle, sellersList.get(h).getStores().get(j).calendarList.get(m), customersList.get(i).getFirstName());
+                                                                                                        }
                                                                                                     }
                                                                                                     case 3 -> {
                                                                                                         //reschedule appointment
-                                                                                                        System.out.println("Enter Appointment title:");
-                                                                                                        String aptTitle = scan.nextLine();
-                                                                                                        customersList.get(i).rescheduleApt(aptTitle, sellersList.get(h).getStores().get(j).calendarList.get(m));
+                                                                                                        for (int q = 0; q < sellersList.get(h).getStores().get(j).getCalendarList().get(m).getAppointments().size(); q++) {
+                                                                                                            System.out.println("Enter Appointment title:");
+                                                                                                            String aptTitle = scan.nextLine();
+                                                                                                            customersList.get(i).rescheduleApt(aptTitle, sellersList.get(h).getStores().get(j).calendarList.get(m));
+                                                                                                        }
+
                                                                                                     }
                                                                                                     case 4 -> {
                                                                                                         //cancel appointment
@@ -418,11 +467,53 @@ public class DoctorsOfficeManager {
                                                     }
                                                     case 4 -> {
                                                         //edit profile
+                                                        boolean invalid7 = false;
                                                         do {
-                                                            //TODO edit profile
-                                                            System.out.println("1. Change Email\n 2. Change Password");
+                                                            System.out.println("1. Change Email\n2. Change Password\n3. Exit");
                                                             input = scan.nextInt();
                                                             scan.nextLine();
+                                                            switch (input) {
+                                                                case 1 -> {
+                                                                    boolean emailFound = false;
+                                                                    //change email
+                                                                    System.out.println("Please enter email");
+                                                                    String emailInput = scan.nextLine();
+                                                                    for (int r = 0; r < sellersList.size(); r++) {
+                                                                        if (emailInput.equals(sellersList.get(r).getEmail())) {
+                                                                            System.out.println("Enter new email:");
+                                                                            String modifiedEmail = scan.nextLine();
+                                                                            sellersList.get(r).setEmail(modifiedEmail);
+                                                                            emailFound = true;
+                                                                            invalid7 = true;
+                                                                        }
+                                                                    }
+                                                                    if (emailFound == false) {
+                                                                        System.out.println("Sorry, couldn't find email");
+                                                                    }
+                                                                }
+                                                                case 2 -> {
+                                                                    //change password
+                                                                    boolean passFound = false;
+                                                                    System.out.println("Please enter Password");
+                                                                    String passInput = scan.nextLine();
+                                                                    for (int t = 0; t < sellersList.size(); t++) {
+                                                                        if (passInput.equals(sellersList.get(t).getPassword())) {
+                                                                            System.out.println("Enter new password:");
+                                                                            String modifiedPass = scan.nextLine();
+                                                                            sellersList.get(t).setPassword(modifiedPass);
+                                                                            passFound = true;
+                                                                            invalid7 = true;
+                                                                        }
+                                                                    }
+                                                                    if (passFound == false) {
+                                                                        System.out.println("Sorry, couldn't find email");
+                                                                    }
+                                                                }
+                                                                case 3 -> {
+                                                                    invalid7 = true;
+                                                                }
+                                                                default -> System.out.println("sorry invalid input, pleas try again");
+                                                            }
                                                         } while (valid);
 
                                                     }
@@ -458,13 +549,9 @@ public class DoctorsOfficeManager {
                         }
                     } while (invalid3);
                 }
-                case 3 -> {
-                    valid = true;
-                }
-                default -> System.out.println("Invalid Option");
             }
         } while (!valid);
+        
     }
 }
-
 
