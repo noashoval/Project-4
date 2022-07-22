@@ -1,9 +1,10 @@
+
 import java.io.*;
 import java.util.ArrayList;
 import java.util.Scanner;
 
 public class DoctorsOfficeManager {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws AppointmentNotFoundException {
         Scanner scan = new Scanner(System.in);
         boolean logLoop;
         boolean existUser;
@@ -96,7 +97,7 @@ public class DoctorsOfficeManager {
                                                         boolean storeFound = false;
                                                         for (int j = 0; j < sellersList.get(i).getStores().
                                                                 size(); j++) {
-                                                            if(storeName.equalsIgnoreCase(sellersList.get(i).
+                                                            if (storeName.equalsIgnoreCase(sellersList.get(i).
                                                                     getStores().get(j).storeName)) {
                                                                 System.out.println("Store Found");
                                                                 storeFound = true;
@@ -104,7 +105,7 @@ public class DoctorsOfficeManager {
                                                                 boolean invalid5 = true;
                                                                 do {
                                                                     System.out.println("1.Create Calendar\n2." +
-                                                                            "View Calendar\n3.Exit");
+                                                                            "View Calendar\n3. Delete Calendar\n4.Exit");
                                                                     input = scan.nextInt();
                                                                     scan.nextLine();
                                                                     boolean calendarFound = false;
@@ -125,8 +126,8 @@ public class DoctorsOfficeManager {
                                                                         case 2 -> {
                                                                             System.out.println("Enter Calendar Name");
                                                                             String calendarName = scan.nextLine();
-                                                                            for(int k = 0; k < sellersList.get(i).getStores().get(j).getCalendarList().size(); k++) {
-                                                                                if(calendarName.equalsIgnoreCase(sellersList.get(i).getStores().get(j).getCalendarList().get(k).getCalendarName())) {
+                                                                            for (int k = 0; k < sellersList.get(i).getStores().get(j).getCalendarList().size(); k++) {
+                                                                                if (calendarName.equalsIgnoreCase(sellersList.get(i).getStores().get(j).getCalendarList().get(k).getCalendarName())) {
                                                                                     System.out.println("Calendar Found");
                                                                                     calendarFound = true;
                                                                                     //while loop 6
@@ -140,7 +141,7 @@ public class DoctorsOfficeManager {
                                                                                                 "6.Exit");
                                                                                         input = scan.nextInt();
                                                                                         scan.nextLine();
-                                                                                        switch (input){
+                                                                                        switch (input) {
                                                                                             case 1 -> {
                                                                                                 System.out.println("Enter Appointment Name");
                                                                                                 String appointmentName = scan.nextLine();
@@ -176,6 +177,7 @@ public class DoctorsOfficeManager {
                                                                                                 System.out.println("Enter Appointment Name");
                                                                                                 String appointmentName = scan.nextLine();
                                                                                                 sellersList.get(i).getStores().get(j).getCalendarList().get(k).removeAppointment(sellersList.get(i).getStores().get(j).getCalendarList().get(k).searchByTitle(appointmentName, sellersList.get(i).getStores().get(j).getCalendarList().get(k).appointments));
+                                                                                                System.out.println("Appointment Deleted");
                                                                                             }
                                                                                             case 4 -> {
                                                                                                 sellersList.get(i).getStores().get(j).getCalendarList().get(k).viewCalendar();
@@ -221,7 +223,20 @@ public class DoctorsOfficeManager {
                                                                                     } while (invalid6);
                                                                                 }
                                                                             }
-                                                                        } case 3 -> {
+                                                                        }
+                                                                        case 3 -> {
+                                                                            System.out.println("Enter Calendar Name");
+                                                                            String calendarName = scan.nextLine();
+                                                                            for (int k = 0; k < sellersList.get(i).getStores().get(j).getCalendarList().size(); k++) {
+                                                                                if (calendarName.equalsIgnoreCase(sellersList.get(i).getStores().get(j).getCalendarList().get(k).getCalendarName())) {
+                                                                                    System.out.println("Calendar Found");
+                                                                                    calendarFound = true;
+                                                                                    Calendar calendar = sellersList.get(i).getStores().get(j).getCalendarList().get(k);
+                                                                                    sellersList.get(i).getStores().get(j).getCalendarList().remove(calendar);
+                                                                                }
+                                                                            }
+                                                                        }
+                                                                        case 4 -> {
                                                                             invalid5 = false;
                                                                             calendarFound = true;
                                                                         }
@@ -243,22 +258,24 @@ public class DoctorsOfficeManager {
                                                     }
                                                     case 3 -> {
                                                         do {
+                                                            //TODO edit account
                                                             System.out.println("1. Change Email\n 2. Change Password");
                                                             input = scan.nextInt();
                                                             scan.nextLine();
-                                                        } while(valid);
+                                                        } while (valid);
                                                     }
                                                     case 4 -> {
                                                         sellersList.remove(i);
                                                         System.out.println("Account Deleted");
-                                                        invalid4=false;
-                                                    } case 5 -> {
+                                                        invalid4 = false;
+                                                    }
+                                                    case 5 -> {
                                                         invalid4 = false;
                                                         valid = false;
                                                     }
                                                     default -> System.out.println("Please Select a valid choice");
                                                 }
-                                            } while(invalid4);
+                                            } while (invalid4);
                                         } else {
                                             System.out.println("----------------");
                                             System.out.println("That is an incorrect password");
@@ -284,33 +301,145 @@ public class DoctorsOfficeManager {
                                         passwordInput = scan.nextLine();
                                         if (customersList.get(i).getPassword().equals(passwordInput.trim())) {
                                             System.out.println("You have been successfully logged in!");
+                                            //cwhile 1
+                                            boolean cValid1 = true;
                                             do {
                                                 int input;
-                                                System.out.println("1. List Stores by Seller\n 2. View Store\n3. List Approved Appointments\n" +
-                                                        "4. Edit Account 5. Delete Account 6. Exit");
+                                                System.out.println("1. List Stores by Seller\n2.View Store\n3. List Approved Appointments\n" +
+                                                        "4. Edit Account 5. Delete Account\n6. Exit");
                                                 input = scan.nextInt();
                                                 scan.nextLine();
                                                 switch (input) {
                                                     case 1 -> {
-
+                                                        //list stores by seller
+                                                        for (int j = 0; j < sellersList.get(i).getStores().size(); j++) {
+                                                            System.out.println(sellersList.get(i).getStores());
+                                                        }
                                                     }
                                                     case 2 -> {
+                                                        //view store
+                                                        //enter store name
+                                                        //1. View Calendars 2. Enter Calendar (enter calendar name) 3.Exit
+                                                        //Once enter Calendar: 1. List appointment 2. make appointment 3. cancel appointment 4.Exit
 
+                                                        System.out.println("Enter store name");
+                                                        String storeName = scan.nextLine();
+                                                        System.out.println("Enter seller name");
+                                                        String sellerName = scan.nextLine();
+                                                        boolean sellerFound = false;
+                                                        boolean storeFound = false;
+                                                        for (int h = 0; h < sellersList.size(); h++) {
+                                                            if (sellersList.get(h).getFirstName().equals(sellerName)) {
+                                                                sellerFound = true;
+                                                                for (int j = 0; j < sellersList.get(h).getStores().size(); j++) {
+                                                                    if (storeName.equalsIgnoreCase(sellersList.get(h).getStores().get(j).storeName)) {
+                                                                        storeFound = true;
+                                                                        //cwhile loop 2
+                                                                        boolean invalidS2 = true; //if hit exit invalid false and then leaves while loop return to previous menu
+                                                                        do {
+                                                                            //print menu
+                                                                            System.out.println("1. View Calendars\n2. Enter Calendar\n3. Exit");
+                                                                            input = scan.nextInt();
+                                                                            scan.nextLine();
+                                                                            switch (input) {
+                                                                                case 1 -> {
+                                                                                    for (int k = 0; k < sellersList.get(h).getStores().get(j).getCalendarList().size(); k++) {
+                                                                                        sellersList.get(h).getStores().get(j).getCalendarList().get(k).viewCalendar();
+                                                                                    }
+                                                                                }
+                                                                                case 2 -> {
+                                                                                    System.out.println("Enter Calendar Name");
+                                                                                    String calendarName = scan.nextLine();
+                                                                                    for (int m = 0; m < sellersList.get(h).getStores().get(j).getCalendarList().size(); m++) {
+                                                                                        if (calendarName.equalsIgnoreCase(sellersList.get(h).getStores().get(j).getCalendarList().get(m).getCalendarName())) {
+                                                                                            System.out.println("Calendar Found");
+                                                                                            //boolean calendarFound = true;
+                                                                                            //while loop 6
+                                                                                            boolean invalidS3 = true;
+                                                                                            do {
+                                                                                                System.out.println("1. List Appointments\n2. Make Appointment Request\n3. Reschedule Appointment\n4. Cancel Appointment\n5. Exit");
+                                                                                                input = scan.nextInt();
+                                                                                                switch (input) {
+                                                                                                    case 1 -> {
+                                                                                                        //list appt
+                                                                                                        for (int n = 0; n < sellersList.get(h).getStores().get(j).getCalendarList().get(m).getAppointments().size(); n++) {
+                                                                                                            System.out.println(sellersList.get(h).getStores().get(j).getCalendarList().get(m).getAppointments().get(n));
+                                                                                                        }
+                                                                                                    }
+                                                                                                    case 2 -> {
+                                                                                                        //make appt request
+                                                                                                        System.out.println("Enter Appointment Title:");
+                                                                                                        String aptTitle = scan.nextLine();
+                                                                                                        customersList.get(i).makeAptRequest(aptTitle, sellersList.get(h).getStores().get(j).getCalendarList().get(m), customersList.get(i).getFirstName());
+                                                                                                    }
+                                                                                                    case 3 -> {
+                                                                                                        //reschedule appointment
+                                                                                                        System.out.println("Enter Appointment title:");
+                                                                                                        String aptTitle = scan.nextLine();
+                                                                                                        customersList.get(i).rescheduleApt(aptTitle, sellersList.get(h).getStores().get(j).calendarList.get(m));
+                                                                                                    }
+                                                                                                    case 4 -> {
+                                                                                                        //cancel appointment
+                                                                                                        for (int p = 0; p < sellersList.get(h).getStores().get(j).getCalendarList().get(m).getAppointments().size(); p++) {
+                                                                                                            System.out.println("Enter Appointment title:");
+                                                                                                            String aptTitle = scan.nextLine();
+                                                                                                            customersList.get(i).cancelAptRequest(aptTitle, sellersList.get(h).getStores().get(j).calendarList.get(m));
+                                                                                                        }
+
+                                                                                                    }
+                                                                                                    case 5 -> {
+                                                                                                        //exit
+                                                                                                        invalidS3 = false;
+                                                                                                    }
+                                                                                                    default -> {
+                                                                                                        System.out.println("Invalid input");
+                                                                                                    }
+                                                                                                }
+                                                                                            } while (invalidS3);
+                                                                                        }
+                                                                                    }
+                                                                                }
+                                                                                case 3 -> {
+                                                                                    //exit
+                                                                                    invalidS2 = false;
+                                                                                }
+                                                                                default -> System.out.println("Invalid input");
+                                                                            }
+                                                                        } while (invalidS2);
+                                                                    }
+                                                                }
+                                                            }
+                                                        }
                                                     }
                                                     case 3 -> {
+                                                        //list approved appts
 
+                                                        customersList.get(i).viewApprovedApt();
                                                     }
                                                     case 4 -> {
+                                                        //edit profile
+                                                        do {
+                                                            //TODO edit profile
+                                                            System.out.println("1. Change Email\n 2. Change Password");
+                                                            input = scan.nextInt();
+                                                            scan.nextLine();
+                                                        } while (valid);
 
                                                     }
                                                     case 5 -> {
+                                                        //delete profile
+                                                        sellersList.remove(i);
+                                                        System.out.println("Account Deleted");
+                                                        cValid1 = false;
 
                                                     }
                                                     case 6 -> {
+                                                        cValid1 = false;
                                                     }
                                                     default -> System.out.println("Please Select a valid choice");
                                                 }
-                                            } while(valid);
+                                            }
+                                            while (cValid1);
 
                                         } else {
                                             System.out.println("That is an incorrect password");
@@ -321,39 +450,21 @@ public class DoctorsOfficeManager {
                                 }
                                 invalid3 = false;
                             }
-                            default -> System.out.println("Invalid User type please.");
+                            //default -> System.out.println("Invalid User type please.");
+                            default -> {
+                                System.out.println("Invalid option, please choose an option:");
+                                valid = false;
+                            }
                         }
                     } while (invalid3);
                 }
                 case 3 -> {
                     valid = true;
                 }
-                default -> {
-                    System.out.println("Invalid option, please choose an option:");
-                    valid = false;
-                }
-
+                default -> System.out.println("Invalid Option");
             }
         } while (!valid);
-
     }
 }
-/*public static ArrayList<User> readUserFile(String filename) {
-        ArrayList<User> userArrayList = new ArrayList<>();
 
-        try {
-            FileInputStream file = new FileInputStream(new File(filename));
-            ObjectInputStream objectInput = new ObjectInputStream(file);
-            userArrayList = (ArrayList<User>) objectInput.readObject();
-            objectInput.close();
-            file.close();
-        } catch (FileNotFoundException e ) {
-            System.out.println("The user file was not found.");
-            return new ArrayList<>();
-        } catch (IOException e) {
-            return new ArrayList<>();
-        } catch (ClassNotFoundException e) {
-            throw new RuntimeException(e);
-        }
-        return userArrayList;
-    }*/
+
